@@ -1,21 +1,23 @@
-﻿using MusicShop.Models;
+﻿using MusicShop.Migrations;
+using MusicShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Migrations;
 
 namespace MusicShop.DAL
 {
-    public class StoreInitializer : DropCreateDatabaseAlways<StoreContext>
+    public class StoreInitializer : MigrateDatabaseToLatestVersion<StoreContext, Configuration>
     {
-        protected override void Seed(StoreContext context)
-        {
-            SeedStoreData(context);
-            base.Seed(context);
-        }
+        //protected override void Seed(StoreContext context)
+        //{
+        //    SeedStoreData(context);
+        //    base.Seed(context);
+        //}
 
-        private void SeedStoreData(StoreContext context)
+        public static void SeedStoreData(StoreContext context)
         {
             List<Genre> genres = new List<Genre>
             {
@@ -33,7 +35,7 @@ namespace MusicShop.DAL
                 new Genre() {GenreId=12, Name="Promocje", IconFileName= "promos.png"},
             };
 
-            genres.ForEach(g => context.Genres.Add(g));
+            genres.ForEach(g => context.Genres.AddOrUpdate(g));
             context.SaveChanges();
 
             List<Album> albums = new List<Album>
@@ -49,7 +51,7 @@ namespace MusicShop.DAL
                 new Album() {AlbumId=9, ArtistName="Str8ts", AlbumTitle="Sneakers Only", Price=25, CoverFileName="9.png", IsBestseller=false, DateAdded=new DateTime(2014,4,2), GenreId=2},
             };
 
-            albums.ForEach(a => context.Albums.Add(a));
+            albums.ForEach(a => context.Albums.AddOrUpdate(a));
             context.SaveChanges();
         }
     }

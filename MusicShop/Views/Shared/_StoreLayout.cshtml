@@ -1,4 +1,4 @@
-﻿
+﻿@using MusicShop.Infrastructure
 @{
     Layout = null;
 }
@@ -24,7 +24,7 @@
             </a>
         </div>
         <a id="main-header-logo" href="@Url.Content("~/")">
-            <img src="@Url.Content("~/Content/Images/spodigly-logo-main.png")" class="center" />
+            <img src="@Url.ImagesPath("spodigly-logo-main.png")" class="center" />
         </a>
     </header>
 
@@ -43,7 +43,7 @@
             </ul>
         </nav>
         <div id="footer-cd-logo">
-            <img src="@Url.Content("~/Content/images/footer-cd.png")" />
+            <img src="@Url.ImagesPath("footer-cd.png")" />
         </div>
 
         <div id="footer-copyright">
