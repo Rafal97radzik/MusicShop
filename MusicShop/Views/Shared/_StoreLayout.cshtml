@@ -10,12 +10,14 @@
     <meta name="viewport" content="width=device-width" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
     <title>@ViewBag.Title</title>
+
+    @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
     <header>
         <div style="overflow: hidden;">
-            <a id="facebook-header" href="">
-                DOŁĄCZ DO 1500 FANÓW NA FB
+            <a id="facebook-header" href="https://www.facebook.com/CSharp.learning/">
+                DOŁĄCZ DO 30000 FANÓW NA FB
             </a>
 
             <a id="cart-header-link" href="">
@@ -47,7 +49,7 @@
         </div>
 
         <div id="footer-copyright">
-            Copyright &copy; 2013 Spod Igły
+            Copyright &copy; 2020 Spod Igły
         </div>
     </footer>
     @RenderSection("ScriptsBottom", required: false)

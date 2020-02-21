@@ -1,0 +1,69 @@
+﻿@model MusicShop.Models.Album
+@using MusicShop.Infrastructure
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+<div id="productlist-content">
+
+    @Html.Action("GenresMenu")
+
+    <div id="product-details-right">
+        <div id="breadcrumb-section">
+            <img src="@Url.ImagesPath("home-small.png")"/>
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+
+        <section id="product-details-section">
+            <div id="product-details-left">
+
+                <img src="@Url.AlbumCoverPath(Model.CoverFileName)"/>
+
+                <div id="product-details-share">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri" target="_blank"></a>
+                    <div></div>
+                    <a href="http://twitter.com/share?text=Moja%20nowa%20zdobycz%3A @Request.Url.AbsoluteUri" target="_blank"></a>
+                </div>
+            </div>
+
+            <div id="product-details-right">
+                <div id="product-details-names">
+                    <h1>
+                        @Model.AlbumTitle
+                    </h1>
+
+                    <h2>
+                        @Model.ArtistName
+                    </h2>
+
+                </div>
+
+                <div id="product-details-price">
+                    <div>
+                        @String.Format("{0:0.##}", Model.Price)<span>PLN</span>
+                    </div>
+                    <a href="@Url.Action("AddToCart", "Cart", new { id=Model.AlbumId})"></a>
+                </div>
+
+                <div id="product-details-description">
+                    @Model.Description
+                </div>
+
+                <div id="product-details-info">
+                    Bezpłatna przesyłka. Czas realizacji około 2 dni roboczych.
+                </div>
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MusicShop.Models.Album>
+    @using MusicShop.Infrastructure
+
+<div id="productlist-section">
+    <ul class="ThreeColumnsCoversList small-cover-list">
+        @foreach(var album in Model)
+        {
+            <li>
+                <article>
+                    <a class="addtocartlink" href="@Url.Action("AddToCart", "Cart", new { id =album.AlbumId})">
+                        <img src="@Url.ImagesPath("cart.png")" alt="Dodaj do koszyka"/>
+                    </a>
+
+                    @if (album.IsBestseller)
+                    {
+                        <div class="bestsellerFlag"></div>
+                    }
+
+                    <a class="productdetailslink" href="@Url.Action("Details", "Store", new { id=album.AlbumId})">
+                        <img class="album-cover" src="@Url.AlbumCoverPath(album.CoverFileName)"/>
+                        <h1>
+                            @album.ArtistName - @album.AlbumTitle
+                        </h1>
+                    </a>
+
+                </article>
+            </li>
+        }
+    </ul>
+</div>

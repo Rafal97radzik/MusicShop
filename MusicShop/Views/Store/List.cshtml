@@ -1,8 +1,73 @@
-﻿
+﻿@using MusicShop.Infrastructure
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 
-<h2>List</h2>
+<div id="productlist-content">
 
+    @Html.Action("GenresMenu")
+
+    <div id="productlist-rightsection">
+        <div id="breadcrumb-section">
+            <img src="@Url.ImagesPath("home-small.png")" />
+            @Html.MvcSiteMap().SiteMapPath()
+
+
+            <form id="search-form" method="get" data-ajax-target="#productlist-section">
+                <input id="search-filter" type="search" name="searchQuery"
+                       data-autocomplite-source="@Url.Action("AlbumsSuggestions")"
+                       placeholder="wprowadź tekst, aby wyfiltrować" />
+                <input type="submit" value="" />
+            </form>
+
+
+        </div>
+
+        @Html.Partial("_ProductList")
+
+    </div>
+</div>
+
+@section ScriptsBottom{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            var setupAutoComplete = function () { 
+                var $input = $(this);
+                var options = {
+                    source: $input.attr("data-autocomplite-source"),
+                    select: function (event, ui) {
+                        $input = $(this);
+                        $input.val(ui.item.label);
+                        var $form = $input.parents("form:first");
+                        $form.submit;
+                    }
+                };
+                $input.autocomplete(options);
+            };
+            var ajaxSubmit = function () {
+                var $form = $(this);
+                var settings = {
+                    data: $(this).serialize(),
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method")
+                };
+                $.ajax(settings).done(function (result) {
+                    var $targetElement = $($form.data("ajax-target"));
+                    var $newContent = $(result);
+                    $($targetElement).replaceWith($newContent);
+                    $newContent.effect("slide");
+                });
+                return false;
+            };
+            $("#search-filter").each(setupAutoComplete);
+            $("#search-form").submit(ajaxSubmit);
+        });
+    </script>
+}
