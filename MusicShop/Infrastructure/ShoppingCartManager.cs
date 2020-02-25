@@ -88,7 +88,7 @@ namespace MusicShop.Infrastructure
             return cart.Sum(c => (c.Quantity * c.Album.Price));
         }
 
-        public int GetCartItemCount()
+        public int GetCartItemsCount()
         {
             var cart = GetCart();
             return cart.Sum(c => c.Quantity);
