@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace MusicShop.Controllers
 {
@@ -263,5 +264,34 @@ namespace MusicShop.Controllers
             return RedirectToAction("AddProduct", new { confirmSuccess = true });
         }
 
+        public ActionResult OrdersList()
+        {
+            bool isAdmin = User.IsInRole("Admin");
+            ViewBag.UserIsAdmin = isAdmin;
+            IEnumerable<Order> userOrders;
+
+            if (isAdmin)
+            {
+                userOrders = db.Orders.Include("OrderItems").
+                    OrderByDescending(o => o.DateCreated).ToArray();
+            }
+            else
+            {
+                var userId = User.Identity.GetUserId();
+                userOrders=db.Orders.Where(o => o.UserId == userId).Include("OrderItems").
+                    OrderByDescending(o => o.DateCreated).ToArray();
+            }
+
+            return View(userOrders);
+        }
+
+        public OrderState ChangeOrderState(Order order)
+        {
+            Order orderToModify = db.Orders.Find(order.OrderId);
+            orderToModify.OrderState = order.OrderState;
+            db.SaveChanges();
+
+            return order.OrderState;
+        }
     }
 }

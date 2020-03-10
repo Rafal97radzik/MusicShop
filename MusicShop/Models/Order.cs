@@ -52,7 +52,10 @@ namespace MusicShop.Models
 
     public enum OrderState
     {
+        [Display(Name ="nowe")]
         New,
+
+        [Display(Name ="wysłane")]
         Shipped
     }
 }
