@@ -1,0 +1,30 @@
+﻿@using MusicShop.Infrastructure
+@{
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+<div id="productlist-content">
+
+    @Html.Action("GenresMenu", "Store")
+
+    <div id="productlist-rightsection">
+        <div id="breadcrumb-section">
+            <img src="@Url.ImagesPath("home-small.png")" />
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+        <section class="content-section">
+            <div class="section-header" style="margin-bottom: 0px;">
+                <h1>
+                    @RenderSection("SectionTitle", required: false)
+                </h1>
+            </div>
+
+            @RenderBody()
+
+        </section>
+    </div>
+</div>
+
+@section ScriptsBottom{
+    @RenderSection("ScriptsBottom", required: false)
+}
