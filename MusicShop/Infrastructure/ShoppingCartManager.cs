@@ -99,7 +99,7 @@ namespace MusicShop.Infrastructure
             var cart = GetCart();
 
             newOrder.DateCreated = DateTime.Now;
-            //newOrder.UserId = userId;
+            newOrder.UserId = userId;
 
             db.Orders.Add(newOrder);
 

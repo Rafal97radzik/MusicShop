@@ -10,23 +10,36 @@ namespace MusicShop.Models
     {
         public int OrderId { get; set; }
 
-        [StringLength(150)]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
+        [Required(ErrorMessage ="Musisz wprowadzić imię")]
+        [StringLength(100)]
         public string FirstName { get; set; }
 
+        [Required(ErrorMessage = "Musisz wprowadzić nazwisko")]
         [StringLength(150)]
         public string LastName { get; set; }
 
-        public string Adress { get; set; }
+        [Required(ErrorMessage = "Nie wprowadzono adresu")]
+        [StringLength(150)]
+        public string Address { get; set; }
 
         [Required(ErrorMessage ="Wprowadź kod pocztowy i miasto")]
         [StringLength(50)]
         public string CodeAndCity { get; set; }
 
+        [Required(ErrorMessage = "Musisz wprowadzić numer telefonu")]
+        [StringLength(20)]
+        [RegularExpression(@"(\+\d{2})*[\d\s-]+", ErrorMessage ="Błędny format numeru telefonu.")]
         public string PhoneNumber { get; set; }
 
+        [Required(ErrorMessage = "Wprowadź swój adres e-mail.")]
+        [EmailAddress(ErrorMessage ="Błędny format adresu e-mail.")]
         public string Email { get; set; }
 
-        public string Coment { get; set; }
+        public string Comment { get; set; }
 
         public DateTime DateCreated { get; set; }
 

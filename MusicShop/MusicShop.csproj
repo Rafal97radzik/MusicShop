@@ -529,6 +529,14 @@
     <Compile Include="Migrations\202003041413232_AddedAspnetIdentity.designer.cs">
       <DependentUpon>202003041413232_AddedAspnetIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003101628388_CorrectionNames.cs" />
+    <Compile Include="Migrations\202003101628388_CorrectionNames.designer.cs">
+      <DependentUpon>202003101628388_CorrectionNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003101642267_UserOrderRelation.cs" />
+    <Compile Include="Migrations\202003101642267_UserOrderRelation.designer.cs">
+      <DependentUpon>202003101642267_UserOrderRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -572,6 +580,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\OrderConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -594,6 +604,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003041413232_AddedAspnetIdentity.resx">
       <DependentUpon>202003041413232_AddedAspnetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003101628388_CorrectionNames.resx">
+      <DependentUpon>202003101628388_CorrectionNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003101642267_UserOrderRelation.resx">
+      <DependentUpon>202003101642267_UserOrderRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
