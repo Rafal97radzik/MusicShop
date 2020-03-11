@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Hangfire;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using MusicShop.App_Start;
 using MusicShop.DAL;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace MusicShop.Controllers
@@ -118,6 +120,10 @@ namespace MusicShop.Controllers
                 await UserManager.UpdateAsync(user);
 
                 shoppingCartManager.EmptyCart();
+
+                string url = Url.Action("SendConfirmationEmail", "Manage", new { orderid = newOrder.OrderId, lastname = newOrder.LastName });
+
+                BackgroundJob.Enqueue(() => Helpers.CallUrl(url));
 
                 return RedirectToAction("OrderConfirmation");
             }

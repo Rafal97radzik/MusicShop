@@ -1,0 +1,17 @@
+﻿@model MusicShop.ViewModel.OrderConfirmationEmail
+Content-Type: text/plain; charset=utf-8
+
+Dziękujemy!
+
+Złożyłeś zamówienie w sklepie spodigly.pl. Postaramy się, aby zamówione płyty dotarły do Ciebie w ciągu 24 godzin.
+
+Prosimy o przelanie kwoty @Model.Cost zł, tytułem: "zamówienie nr @Model.OrderNumber" na nasze konto bankowe:
+
+
+
+Zaraz po otrzymaniu środków wyślemy przesyłkę kurierską pod adres: @Model.FullAddress.
+
+Tutaj znajdziesz szczegóły Twojego zamówienia: @Url.Action("OrdersList", "Manage", null, "https")
+
+Dziękujemy i zapraszamy ponownie!
+Sklep SpodIgły.pl

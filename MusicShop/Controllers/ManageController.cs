@@ -14,6 +14,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using MusicShop.Infrastructure;
+using System.Web.Hosting;
+using System.Net;
 
 namespace MusicShop.Controllers
 {
@@ -279,7 +281,7 @@ namespace MusicShop.Controllers
             else
             {
                 var userId = User.Identity.GetUserId();
-                userOrders=db.Orders.Where(o => o.UserId == userId).Include("OrderItems").
+                userOrders = db.Orders.Where(o => o.UserId == userId).Include("OrderItems").
                     OrderByDescending(o => o.DateCreated).ToArray();
             }
 
@@ -303,7 +305,7 @@ namespace MusicShop.Controllers
 
             if (albumId.HasValue)
             {
-                ViewBag.EditMode = true; 
+                ViewBag.EditMode = true;
                 result.Album = db.Albums.Find(albumId);
             }
             else
@@ -324,7 +326,7 @@ namespace MusicShop.Controllers
             {
                 db.Entry(model.Album).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AddProduct", new { confirmSuccess=true});
+                return RedirectToAction("AddProduct", new { confirmSuccess = true });
             }
             else
             {
@@ -363,5 +365,24 @@ namespace MusicShop.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult SendConfirmationEmail(int orderid, string lastname)
+        {
+
+            var order = db.Orders.Include("OrderItems").Include("OrderItems.Album").SingleOrDefault(o => o.OrderId == orderid && o.LastName==lastname);
+
+            if (order == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            OrderConfirmationEmail email = new OrderConfirmationEmail();
+            email.To = order.Email;
+            email.Cost = order.TotalPrince;
+            email.OrderNumber = order.OrderId;
+            email.FullAddress = string.Format("{0} {1}, {2}, {3}", order.FirstName, order.LastName, order.Address, order.CodeAndCity);
+            email.OrderItems = order.OrderItems;
+            email.CoverPath = AppConfig.PhotosFolderRelative;
+            email.Send();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
     }
 }
