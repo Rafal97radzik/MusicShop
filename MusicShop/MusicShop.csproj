@@ -550,6 +550,7 @@
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="ViewModel\CartRemoveViewModel.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\EditProductViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ManageViewModels.cs" />
   </ItemGroup>
@@ -584,6 +585,7 @@
     <Content Include="Views\Cart\OrderConfirmation.cshtml" />
     <Content Include="Views\Manage\OrdersList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Manage\AddProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

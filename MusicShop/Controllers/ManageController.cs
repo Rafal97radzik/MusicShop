@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using MusicShop.Infrastructure;
 
 namespace MusicShop.Controllers
 {
@@ -293,5 +294,74 @@ namespace MusicShop.Controllers
 
             return order.OrderState;
         }
+
+        public ActionResult AddProduct(int? albumId, bool? confirmSuccess)
+        {
+            var result = new EditProductViewModel();
+
+            result.Genres = db.Genres.ToList();
+
+            if (albumId.HasValue)
+            {
+                ViewBag.EditMode = true; 
+                result.Album = db.Albums.Find(albumId);
+            }
+            else
+            {
+                ViewBag.EditMode = false;
+                result.Album = new Album();
+            }
+
+            result.ConfirmSuccess = confirmSuccess;
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(EditProductViewModel model, HttpPostedFileBase file)
+        {
+            if (model.Album.AlbumId > 0)
+            {
+                db.Entry(model.Album).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AddProduct", new { confirmSuccess=true});
+            }
+            else
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var fileExt = Path.GetExtension(file.FileName);
+                        var filename = Guid.NewGuid() + fileExt;
+
+                        var path = Path.Combine(Server.MapPath(AppConfig.PhotosFolderRelative), filename);
+                        file.SaveAs(path);
+
+                        model.Album.CoverFileName = filename;
+                        model.Album.DateAdded = DateTime.Now;
+
+                        db.Entry(model.Album).State = EntityState.Added;
+                        db.SaveChanges();
+
+                        return RedirectToAction("AddProduct", new { confirmSuccess = true });
+                    }
+                    else
+                    {
+                        var genres = db.Genres.ToArray();
+                        model.Genres = genres;
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Nie wskazano pliku.");
+                    var genres = db.Genres.ToArray();
+                    model.Genres = genres;
+                    return View(model);
+                }
+            }
+        }
+
     }
 }
