@@ -2,6 +2,7 @@
 using MusicShop.Infrastructure;
 using MusicShop.Models;
 using MusicShop.ViewModel;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace MusicShop.Controllers
     public class HomeController : Controller
     {
         private StoreContext db = new StoreContext();
+
         // GET: Home
         public ActionResult Index()
         {
