@@ -13,14 +13,19 @@ namespace MusicShop.Controllers
 {
     public class HomeController : Controller
     {
-        private StoreContext db = new StoreContext();
+        private StoreContext db;
+        private ICacheProvider cache;
+
+        public HomeController(StoreContext context, ICacheProvider cache)
+        {
+            this.db = context;
+            this.cache = cache;
+        }
 
         // GET: Home
         public ActionResult Index()
         {
             var genres = db.Genres.ToList();
-
-            ICacheProvider cache = new DefaultCacheProvider();
 
             List<Album> newArrivals;
 

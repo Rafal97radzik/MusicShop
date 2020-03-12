@@ -19,12 +19,10 @@ namespace MusicShop.Controllers
     public class CartController : Controller
     {
         private ShoppingCartManager shoppingCartManager;
-        private ISessionManager sessionManager { get; set; }
         private StoreContext db;
 
-        public CartController()
+        public CartController(ISessionManager sessionManager)
         {
-            sessionManager = new SessionManager();
             db = new StoreContext();
             shoppingCartManager = new ShoppingCartManager(sessionManager, db);
         }
