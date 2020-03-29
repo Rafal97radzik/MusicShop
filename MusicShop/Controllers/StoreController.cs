@@ -9,7 +9,13 @@ namespace MusicShop.Controllers
 {
     public class StoreController : Controller
     {
-        StoreContext db = new StoreContext();
+        StoreContext db;
+
+        public StoreController(StoreContext context)
+        {
+            db = context;
+        }
+
         // GET: Store
         public ActionResult Index()
         {
@@ -18,7 +24,7 @@ namespace MusicShop.Controllers
 
         public ActionResult Details(int id)
         {
-            var album = db.Albums.Find(id);
+            var album = db.Albums.FirstOrDefault(a => a.AlbumId == id);
 
             return View(album);
         }
@@ -51,7 +57,7 @@ namespace MusicShop.Controllers
         public ActionResult AlbumsSuggestions(string term)
         {
             var albums = db.Albums.Where(a => !a.IsHidden && (a.AlbumTitle.ToLower().Contains(term.ToLower()) ||
-            a.ArtistName.ToLower().Contains(term.ToLower()))).Take(5).Select(a => new { label = a.AlbumTitle });
+            a.ArtistName.ToLower().Contains(term.ToLower()))).Take(5).Select(a => new { label = a.AlbumTitle }).ToList();
 
             return Json(albums, JsonRequestBehavior.AllowGet);
         }

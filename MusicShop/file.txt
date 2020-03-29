@@ -99,3 +99,42 @@
 2020-03-12 14:18:18.5577|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:12792:1a870485 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
 2020-03-12 14:18:18.5985|INFO|Hangfire.Server.ServerWatchdog|2 servers were removed due to timeout
 2020-03-12 14:18:18.9062|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:12792:1a870485 all the dispatchers started
+2020-03-29 13:26:45.9897|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Start installing Hangfire SQL objects...
+2020-03-29 13:26:46.1832|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Hangfire SQL objects installed.
+2020-03-29 13:26:46.2191|INFO|Hangfire.BackgroundJobServer|Starting Hangfire Server using job storage: 'SQL Server: (LocalDb)\v11.0@SpodIglyDB'
+2020-03-29 13:26:46.2251|INFO|Hangfire.BackgroundJobServer|Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-03-29 13:26:46.2251|INFO|Hangfire.BackgroundJobServer|Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-03-29 13:26:46.4341|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:3524:a508ae8c successfully announced in 167,8817 ms
+2020-03-29 13:26:46.4461|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:3524:a508ae8c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-03-29 13:26:46.4760|INFO|Hangfire.Server.ServerWatchdog|1 servers were removed due to timeout
+2020-03-29 13:26:46.8740|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:3524:a508ae8c all the dispatchers started
+2020-03-29 15:09:23.1958|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Start installing Hangfire SQL objects...
+2020-03-29 15:09:25.0872|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Hangfire SQL objects installed.
+2020-03-29 15:09:25.1311|INFO|Hangfire.BackgroundJobServer|Starting Hangfire Server using job storage: 'SQL Server: (LocalDb)\v11.0@SpodIglyDB'
+2020-03-29 15:09:25.1311|INFO|Hangfire.BackgroundJobServer|Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-03-29 15:09:25.1510|INFO|Hangfire.BackgroundJobServer|Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-03-29 15:09:25.4901|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:11468:bf31dfb8 successfully announced in 197,7361 ms
+2020-03-29 15:09:25.5041|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:11468:bf31dfb8 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-03-29 15:09:25.5270|INFO|Hangfire.Server.ServerWatchdog|1 servers were removed due to timeout
+2020-03-29 15:09:25.9382|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:11468:bf31dfb8 all the dispatchers started
+2020-03-29 15:54:45.8546|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Start installing Hangfire SQL objects...
+2020-03-29 15:54:47.2290|INFO|Hangfire.SqlServer.SqlServerObjectsInstaller|Hangfire SQL objects installed.
+2020-03-29 15:54:47.2689|INFO|Hangfire.BackgroundJobServer|Starting Hangfire Server using job storage: 'SQL Server: (LocalDb)\v11.0@SpodIglyDB'
+2020-03-29 15:54:47.2689|INFO|Hangfire.BackgroundJobServer|Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-03-29 15:54:47.2869|INFO|Hangfire.BackgroundJobServer|Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-03-29 15:54:47.5372|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:16756:1070efa1 successfully announced in 183,7891 ms
+2020-03-29 15:54:47.5521|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:16756:1070efa1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-03-29 15:54:47.5866|INFO|Hangfire.Server.ServerWatchdog|1 servers were removed due to timeout
+2020-03-29 15:54:47.9626|INFO|Hangfire.Server.BackgroundServerProcess|Server ai-pc:16756:1070efa1 all the dispatchers started
